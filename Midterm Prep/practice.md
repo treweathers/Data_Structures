@@ -1,9 +1,3 @@
-That's a great request. You are absolutely right—a good practice exam should require you to identify the concept being tested without any labels and shouldn't immediately give away the answers.
-
-Here is your full-length, multiple-choice data structures practice midterm exam. It covers all 65 requested subtopics, presented in the non-interactive, listed format, and focuses on the tracing and application style you requested.
-
-***
-
 ## Data Structures Practice Midterm Exam
 
 ### Questions
