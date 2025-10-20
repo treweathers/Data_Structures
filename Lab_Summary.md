@@ -1,3 +1,92 @@
+# ZyLabs Guide
+You're absolutely right! I missed adding those last three labs to the consolidated summary. That makes eight labs in total: 1.9, 1.10, 2.17, 3.9, 3.17, 4.18, 4.19, 4.21, and 4.22.
+
+Here is the fully consolidated bullet-point summary of **all the methods** from your study materials, including the Doubly Linked List and Recursion labs, organized by data structure.
+
+---
+
+## Consolidated Data Structures Lab Methods Summary
+
+### High Array (Lab 1.9)
+
+* `insert(long value)`: Add value to the end. $O(1)$.
+* `find(long searchKey)`: Sequential (linear) search. $O(N)$.
+* **`delete(long value)`**: Find and remove first occurrence, **shift subsequent elements down**. $O(N)$.
+* **`getMax()`**: Find (but don't remove) the maximum value. $O(N)$.
+* **`removeMax()`**: Find and remove the maximum value, **shift elements down**. $O(N)$.
+
+---
+
+### Ordered Array (Lab 1.10)
+
+* **`insert(long value)`**: Find insertion point and **shift elements up** to maintain order. $O(N)$.
+* **`find(long searchKey)`**: **Binary Search** implementation. $O(\log N)$.
+* **`delete(long value)`**: Use `find()` to locate, then **shift elements down** to remove. $O(N)$.
+* `removeIndex(int idx)`: Delete element at a known index by shifting elements down. $O(N)$.
+
+---
+
+### Two Sorted Arrays (Lab 2.17)
+
+* **`rearrange(int[] A, int[] B)`**: **In-place partition** (swap $A[j]$ with $B[0]$ if $A[j] > B[0]$) and **re-sort $B$** using an Insertion Sort pattern. $O(A \cdot B)$.
+
+---
+
+### Stack (Lab 3.9)
+
+* **`push(int j)`**: Add item to the $\mathbf{top}$ of the array (pre-increment `top`). $O(1)$.
+* **`pop()`**: Remove and return item from the $\mathbf{top}$ (post-decrement `top`). $O(1)$.
+* `peek()`: View top item without removal. $O(1)$.
+* `decimalToBinary(int d)`: Application method: Uses the stack's **LIFO** property to reverse the order of modulo remainders. $O(\log_{2}N)$.
+
+---
+
+### Queue (Lab 3.17)
+
+* **`insert(int j)`**: Add item to the $\mathbf{rear}$ of the **circular array**. $O(1)$.
+* **`remove()`**: Remove and return item from the $\mathbf{front}$ of the circular array. $O(1)$.
+* **`reverse()`**: Application method: Transfers all items to a **Stack** (inverts order) and then back to the **Queue** (re-inverts). $O(N)$.
+
+---
+
+### Singly Linked List (Lab 4.18)
+
+* `insertFirst(int dd)`: Add a link at the start (`first`). $O(1)$.
+* `deleteFirst()`: Remove the first link. $O(1)$.
+* **`delete(int key)`**: Find and remove the $\mathbf{first}$ key, requiring a $\mathbf{previous}$ pointer to bypass. $O(N)$.
+* **`removeLast(int n)`**: Traverses once to $\mathbf{track}$ the last matching link and its $\mathbf{predecessor}$, then deletes. $O(N)$.
+* **`removeAll(int n)`**: Deletes **all** occurrences, requiring dynamic logic to update $\mathbf{first}$ and avoid advancing $\mathbf{previous}$ after a deletion. $O(N)$.
+
+---
+
+### Doubly Linked List / Priority Queue (Lab 4.19)
+
+* `insertFirst/Last(long dd)`: Standard $O(1)$ insertion, updates $\mathbf{next}$ and $\mathbf{previous}$.
+* `deleteFirst/Last()`: Standard $O(1)$ deletion, updates $\mathbf{next}$ and $\mathbf{previous}$.
+* **`priorityRemove()`**: **Removes the highest priority item** (the $\mathbf{last}$ element) by calling `deleteLast()`. $O(1)$.
+* **`priorityInsert(long key)`**: Finds the correct sorted position ($O(N)$) and inserts, requiring a $\mathbf{4-pointer}$ update. $O(N)$.
+* `deleteKey(long key)`: Find and remove a key, requiring $\mathbf{4-pointer}$ updates to bypass. $O(N)$.
+
+---
+
+### Recursion (Numeric/Array) (Lab 4.21)
+
+* **`triangle(int rows)`**: Sum of rows (e.g., $1+2+3+\dots+$rows). Base case $\mathbf{rows=0}$. $O(N)$.
+* **`sumDigits(int num)`**: Sum of a number's digits using $\mathbf{\% 10}$ and $\mathbf{/ 10}$. Base case $\mathbf{num < 10}$. $O(\log_{10}N)$.
+* **`bunnyEars2(int n)`**: Calculates ears based on $\mathbf{n}$'s $\mathbf{parity}$ (odd/even) with $\mathbf{2}$ or $\mathbf{3}$ ears. $O(N)$.
+* **`arrayVal(int[] nums, int index, int Val)`**: Recursive $\mathbf{search}$ for $\mathbf{Val}$ starting at $\mathbf{index}$. $O(N)$.
+* **`arrayX10(int[] nums, int index)`**: Recursive $\mathbf{pattern}$ $\mathbf{search}$ for $N, 10N$ starting at $\mathbf{index}$. $O(N)$.
+* **`array11(int[] nums, int index)`**: Recursive $\mathbf{count}$ of $\mathbf{11}$'s starting at $\mathbf{index}$. $O(N)$.
+
+---
+
+### Recursion (Linked List) (Lab 4.22)
+
+* `recGetLength()`: Recursive $\mathbf{list}$ $\mathbf{length}$ (base case $\mathbf{current = null}$). $O(N)$.
+* **`recReversePrint()`**: Recursive $\mathbf{print}$ using the stack's $\mathbf{post-order}$ execution. $O(N)$.
+* **`recRemoveFirst(int n)`**: Recursive deletion, returns $\mathbf{current.next}$ if $\mathbf{n}$ is found, stopping the chain. $O(N)$.
+* **`recRemoveAll(int n)`**: Recursive $\mathbf{deletion}$ of $\mathbf{all}$ $\mathbf{occurrences}$. Always recurses, returns $\mathbf{current.next}$ if $\mathbf{n}$ is a match. $O(N)$.
+
 That's a fantastic first lab\! It covers core array operations, which are foundational. Here is the bullet-point study guide for Lab 1.9: High Array.
 
 ## Lab 1.9: High Array Methods Study Guide 📚
