@@ -1,8 +1,5 @@
 # ZyLabs Guide
-
-That's a great approach! For complex programming assignments, especially those involving pre-existing data structure code, the setup and planning phase is crucial. You're right—it's more than just understanding the data structure; it's about understanding the **layers of interaction** between the application logic (`Main` class) and the data structure (`OrdArray`, `LinkList`, etc.) class.
-
-Here is a structured guide on how to approach layered programming assignments like the ones you've shared.
+For complex programming assignments, especially those involving pre-existing data structure code, the setup and planning phase is crucial. It's more than just understanding the data structure; it's about understanding the **layers of interaction** between the application logic (`Main` class) and the data structure (`OrdArray`, `LinkList`, etc.) class. Here is a structured guide on how to approach layered programming assignments like the ones you've shared.
 
 ***
 
