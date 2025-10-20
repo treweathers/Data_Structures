@@ -1,8 +1,8 @@
 # ZyLabs Guide
 
-## Consolidated Data Structures Lab Methods Summary
+## Consolidated Data Structures Lab Methods Summary (9 Labs)
 
-### High Array (Lab 1.9)
+### 1. High Array (Lab 1.9)
 
 * `insert(long value)`: Add value to the end. $O(1)$.
 * `find(long searchKey)`: Sequential (linear) search. $O(N)$.
@@ -12,7 +12,7 @@
 
 ---
 
-### Ordered Array (Lab 1.10)
+### 2. Ordered Array (Lab 1.10)
 
 * **`insert(long value)`**: Find insertion point and **shift elements up** to maintain order. $O(N)$.
 * **`find(long searchKey)`**: **Binary Search** implementation. $O(\log N)$.
@@ -21,13 +21,13 @@
 
 ---
 
-### Two Sorted Arrays (Lab 2.17)
+### 3. Two Sorted Arrays (Lab 2.17)
 
 * **`rearrange(int[] A, int[] B)`**: **In-place partition** (swap $A[j]$ with $B[0]$ if $A[j] > B[0]$) and **re-sort $B$** using an Insertion Sort pattern. $O(A \cdot B)$.
 
 ---
 
-### Stack (Lab 3.9)
+### 4. Stack (Lab 3.9)
 
 * **`push(int j)`**: Add item to the $\mathbf{top}$ of the array (pre-increment `top`). $O(1)$.
 * **`pop()`**: Remove and return item from the $\mathbf{top}$ (post-decrement `top`). $O(1)$.
@@ -36,7 +36,7 @@
 
 ---
 
-### Queue (Lab 3.17)
+### 5. Queue (Lab 3.17)
 
 * **`insert(int j)`**: Add item to the $\mathbf{rear}$ of the **circular array**. $O(1)$.
 * **`remove()`**: Remove and return item from the $\mathbf{front}$ of the circular array. $O(1)$.
@@ -44,7 +44,7 @@
 
 ---
 
-### Singly Linked List (Lab 4.18)
+### 6. Singly Linked List (Lab 4.18)
 
 * `insertFirst(int dd)`: Add a link at the start (`first`). $O(1)$.
 * `deleteFirst()`: Remove the first link. $O(1)$.
@@ -54,7 +54,7 @@
 
 ---
 
-### Doubly Linked List / Priority Queue (Lab 4.19)
+### 7. Doubly Linked List / Priority Queue (Lab 4.19)
 
 * `insertFirst/Last(long dd)`: Standard $O(1)$ insertion, updates $\mathbf{next}$ and $\mathbf{previous}$.
 * `deleteFirst/Last()`: Standard $O(1)$ deletion, updates $\mathbf{next}$ and $\mathbf{previous}$.
@@ -64,7 +64,7 @@
 
 ---
 
-### Recursion (Numeric/Array) (Lab 4.21)
+### 8. Recursion (Numeric/Array) (Lab 4.21)
 
 * **`triangle(int rows)`**: Sum of rows (e.g., $1+2+3+\dots+$rows). Base case $\mathbf{rows=0}$. $O(N)$.
 * **`sumDigits(int num)`**: Sum of a number's digits using $\mathbf{\% 10}$ and $\mathbf{/ 10}$. Base case $\mathbf{num < 10}$. $O(\log_{10}N)$.
@@ -75,7 +75,7 @@
 
 ---
 
-### Recursion (Linked List) (Lab 4.22)
+### 9. Recursion (Linked List) (Lab 4.22)
 
 * `recGetLength()`: Recursive $\mathbf{list}$ $\mathbf{length}$ (base case $\mathbf{current = null}$). $O(N)$.
 * **`recReversePrint()`**: Recursive $\mathbf{print}$ using the stack's $\mathbf{post-order}$ execution. $O(N)$.
