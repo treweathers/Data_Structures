@@ -1,9 +1,3 @@
-Hello\! As your study buddy, I've generated a multiple-choice practice exam focusing on applied, non-definitional problems as requested, ensuring at least one applied question for every section marked with "no challenges."
-
-Here is the practice exam, organized by topic. The correct answers are provided at the end.
-
------
-
 ## Multiple-Choice Practice Exam
 
 ### 1\. 9/4: Introduction (ZyBooks 1.1-1.6)
