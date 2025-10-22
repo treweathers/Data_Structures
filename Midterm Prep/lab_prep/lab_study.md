@@ -72,7 +72,6 @@ public class ArrayUtils {
     public static boolean recursiveSearch(int[] nums, int target) {
         // You must call your recursive helper method from here
         /* ADD YOUR CODE HERE TO CALL HELPER */
-    public static boolean recursiveSearch(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return false;
         }
