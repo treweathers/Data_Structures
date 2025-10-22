@@ -1,9 +1,3 @@
-That's a very clear overview of your programming labs\! The assignments focus heavily on core data structure manipulations and recursive thinking, often by extending existing class files.
-
-Based on the topics covered (Arrays, Ordered Arrays, Linked Lists, Doubly Linked Lists, Stacks, Queues, and Recursion), I'll generate a new lab assignment focused on **Recursion with Arrays** (which covers your last recursion topic) and follows your format of providing an existing class structure with methods to be completed.
-
------
-
 ## New Lab Assignment: 4.23 LAB Recursive Array Sorting Check
 
 ### Overview
