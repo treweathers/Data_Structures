@@ -51,27 +51,6 @@ public class ArrayUtils {
 
     // Part 1: Recursive helper method to check if the array is sorted
     /* ADD YOUR CODE HERE FOR: private static boolean isSorted(int[] nums, int index) */
-    
-    // Part 2: Public method to recursively search for a target
-    public static boolean recursiveSearch(int[] nums, int target) {
-        // You must call your recursive helper method from here
-        /* ADD YOUR CODE HERE TO CALL HELPER */
-    }
-
-    // Part 2: Recursive helper method to search for a target
-    /* ADD YOUR CODE HERE FOR: private static boolean recursiveSearch(int[] nums, int target, int index) */
-
-public class ArrayUtils {
-
-    // Part 1: Public method to check if the array is sorted
-    public static boolean isSorted(int[] nums) {
-        if (nums == null || nums.length <= 1) {
-            return true;
-        }
-        return isSorted(nums, 0);
-    }
-
-    // Part 1: Recursive helper method to check if the array is sorted
     private static boolean isSorted(int[] nums, int index) {
         // Base Case: If we have reached the last element (or beyond), 
         // all previous comparisons were successful, so the array is sorted.
@@ -91,14 +70,19 @@ public class ArrayUtils {
     
     // Part 2: Public method to recursively search for a target
     public static boolean recursiveSearch(int[] nums, int target) {
+        // You must call your recursive helper method from here
+        /* ADD YOUR CODE HERE TO CALL HELPER */
+    public static boolean recursiveSearch(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return false;
         }
         // Pass to the recursive helper, starting at index 0
         return recursiveSearch(nums, target, 0);
     }
+    }
 
     // Part 2: Recursive helper method to search for a target
+    /* ADD YOUR CODE HERE FOR: private static boolean recursiveSearch(int[] nums, int target, int index) */
     private static boolean recursiveSearch(int[] nums, int target, int index) {
         // Base Case 1: Search failed, index is out of bounds
         if (index >= nums.length) {
@@ -113,7 +97,6 @@ public class ArrayUtils {
         // Recursive Step: Check the rest of the array
         return recursiveSearch(nums, target, index + 1);
     }
-
 }
 }
 ```
