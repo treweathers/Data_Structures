@@ -37,7 +37,7 @@ Those are excellent points for clarification, especially when dealing with class
 
 ***
 
-5.  **PSEUDO-CODE Formulate Logic (Per Method)**: Design the logic for **each required method**, keeping the constraints in mind.
+5.  **Formulate Logic (Pseudo Code-Per Method)**: Design the logic for **each required method**, keeping the constraints in mind.
 
     ### 📝 Logic Formulation (Step 5)
     * **Public Interface Method (The Caller)**: This method's primary jobs are:
