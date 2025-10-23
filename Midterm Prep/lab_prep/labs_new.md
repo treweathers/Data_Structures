@@ -1,123 +1,465 @@
-## New Lab Assignment: 4.24 LAB Recursive Counting
+You're absolutely right\! Let's streamline this to include only the **8 distinct and solved** labs, removing the redundancy caused by the comprehensive **Lab 4.23 (Recursive Array Check)**.
 
-### Overview
+Here is the final, consolidated set of **eight** solved labs. Good luck with your exam\! 🍀
 
-In this lab, you will complete a method in the provided `ArrayCounter` class to recursively count the number of elements in an array that satisfy a specific condition. This assignment reinforces the pattern of using **recursion with array indices** to iterate over an array.
+-----
 
-The provided `ArrayCounter` class contains a static method, `countEvens`, which you will overload with a recursive helper method. You may **not** use any loops (`for`, `while`, `do-while`) or create any additional arrays.
+## 🚀 Final Consolidated Data Structures Lab Solutions (8 Labs)
 
-### Requirements
+### 1\. High Array: Remove Max (Lab 1.9 - `removeMax()`)
 
-You will add the following **two** methods to the `ArrayCounter` class.
+| Topic | Complexity |
+| :--- | :--- |
+| **Unordered Array Deletion** | $O(N)$ |
 
-#### Part 1: Recursive Count of Even Numbers
+**Overview:** Finds and removes the largest element by shifting subsequent elements down.
 
-The goal is to recursively count how many elements in the array are **even**.
-
-1.  **`public static int countEvens(int[] nums)`**: This is the public interface method. It should check for edge cases (null or empty arrays) and call your recursive helper method.
-2.  **`private static int countEvens(int[] nums, int index)`**: This is the recursive helper method.
-      * **Base Case**: The recursion should stop when the `index` reaches the end of the array, returning `0` (since no more elements can be counted).
-      * **Recursive Step**: Check if the element at the current `index` is even.
-          * If it is even, return `1 +` the result of the recursive call by advancing the index.
-          * If it is odd, return `0 +` the result of the recursive call by advancing the index.
-
-### Provided Code Structure (Java)
-
-**File: `ArrayCounter.java`**
+#### Code: `HighArray.java`
 
 ```java
-public class ArrayCounter {
+class HighArray {
+    private long[] a;
+    private int nElems;
 
-    // Part 1: Public method to count the number of even integers
-    public static int countEvens(int[] nums) {
+    public HighArray(int max) {
+        a = new long[max];
+        nElems = 0;
+    }
+
+    // --- insert, find, etc. omitted for brevity ---
+
+    /**
+     * Finds and removes the largest element in the array.
+     * @return The largest value, or -1 if the array is empty.
+     */
+    public long removeMax() {
         /* ADD YOUR CODE HERE */
-        if (nums == null || nums.length == 0) {
-            return 0;
+        if (nElems == 0) {
+            return -1; // Empty array
         }
-        // Call the recursive helper, starting at index 0
-        return countEvens(nums, 0);
-    }
 
-    // Part 1: Recursive helper method to count even integers
-    /* ADD YOUR CODE HERE FOR: private static int countEvens(int[] nums, int index) */
-    
+        int maxIndex = 0;
+        long maxValue = a[0];
+
+        // 1. Find the maximum value and its index
+        for (int j = 1; j < nElems; j++) {
+            if (a[j] > maxValue) {
+                maxValue = a[j];
+                maxIndex = j;
+            }
+        }
+
+        // 2. Shift subsequent elements down to fill the gap (deletion)
+        for (int k = maxIndex; k < nElems - 1; k++) {
+            a[k] = a[k + 1];
+        }
+
+        nElems--;
+        return maxValue;
+    }
 }
 ```
 
-**File: `Main.java` (Driver Program)**
+-----
+
+\<hr\>
+
+### 2\. Ordered Array: Binary Search (Lab 1.10 - `find()`)
+
+| Topic | Complexity |
+| :--- | :--- |
+| **Ordered Array Search** | $O(\log N)$ |
+
+**Overview:** Finds a value in an ordered array using the efficient **Binary Search** technique.
+
+#### Code: `OrdArray.java`
 
 ```java
-import java.util.Arrays;
+class OrdArray {
+    private long[] a;
+    private int nElems;
 
-public class Main {
-    public static void main(String[] args) {
-        int[] arr1 = {2, 5, 8, 1, 4, 10}; // Expected: 4 (2, 8, 4, 10)
-        int[] arr2 = {1, 3, 5, 7, 9};    // Expected: 0
-        int[] arr3 = {6};                // Expected: 1
-        int[] arr4 = {};                 // Expected: 0
+    public OrdArray(int max) {
+        a = new long[max];
+        nElems = 0;
+    }
 
-        System.out.println("Array 1: " + Arrays.toString(arr1) + " -> Evens: " + ArrayCounter.countEvens(arr1));
-        System.out.println("Array 2: " + Arrays.toString(arr2) + " -> Evens: " + ArrayCounter.countEvens(arr2));
-        System.out.println("Array 3: " + Arrays.toString(arr3) + " -> Evens: " + ArrayCounter.countEvens(arr3));
-        System.out.println("Array 4: " + Arrays.toString(arr4) + " -> Evens: " + ArrayCounter.countEvens(arr4));
+    // --- insert, delete, etc. omitted for brevity ---
+
+    /**
+     * Finds a value using Binary Search.
+     * @param searchKey The value to search for.
+     * @return The index of the value if found, or -1 if not found.
+     */
+    public int find(long searchKey) {
+        /* ADD YOUR CODE HERE */
+        int lowerBound = 0;
+        int upperBound = nElems - 1;
+        int curIn;
+
+        while (true) {
+            curIn = (lowerBound + upperBound) / 2;
+            
+            // 1. Check if the middle element is the key
+            if (a[curIn] == searchKey) {
+                return curIn; // Found it!
+            } 
+            // 2. Check if the search space is exhausted
+            else if (lowerBound > upperBound) {
+                return -1; // Cannot find it (search space closed)
+            } 
+            // 3. Adjust the bounds
+            else { 
+                if (a[curIn] < searchKey) {
+                    lowerBound = curIn + 1; // Key is in the upper half
+                } else {
+                    upperBound = curIn - 1; // Key is in the lower half
+                }
+            }
+        }
     }
 }
 ```
 
 -----
 
-### Starting the Process
+\<hr\>
 
-Based on our guide (Step 5: Formulate Logic), we need to focus on the **recursive helper method**:
+### 3\. Queue: Reverse (Lab 3.17 - `reverse()`)
 
-`private static int countEvens(int[] nums, int index)`
+| Topic | Complexity |
+| :--- | :--- |
+| **Queue/Stack Application** | $O(N)$ |
 
-**What should the Base Case be for this method, and what value must it return?**
+**Overview:** Demonstrates reversing a **Queue** by temporarily using a **Stack**, showing the complementary nature of FIFO and LIFO.
 
-That's fantastic\! Your confidence is well-earned. Moving to a completely different topic, let's focus on **Stacks and Strings** using the constraint from Lab 3.9 (using a stack to solve a conversion problem).
+#### Code: `ArrayQueue.java`
 
-This lab will require you to combine:
+```java
+import java.util.Stack;
 
-1.  **Iterative Logic** (using loops, since this isn't a recursion lab).
-2.  **Stack Usage** (to reverse the order).
-3.  **String Building**.
+class ArrayQueue {
+    // Simplified circular queue structure
+    private int[] queArray;
+    private int nItems;
+    private int front;
+    private int rear;
+
+    public ArrayQueue(int s) {
+        queArray = new int[s];
+        nItems = 0;
+        front = 0;
+        rear = -1;
+    }
+    
+    // --- insert/remove/etc. omitted for brevity ---
+
+    /**
+     * Reverses the order of all elements in the queue using a Stack.
+     */
+    public void reverse() {
+        /* ADD YOUR CODE HERE */
+        if (nItems <= 1) {
+            return;
+        }
+
+        Stack<Integer> tempStack = new Stack<>();
+
+        // 1. Dequeue all items and push them onto the stack (reverses order)
+        int initialSize = nItems; 
+        for (int i = 0; i < initialSize; i++) {
+            // Assumes a 'remove()' method is defined in this class
+            tempStack.push(this.remove()); 
+        }
+
+        // 2. Pop all items from the stack and enqueue them back (re-reverses to queue order)
+        while (!tempStack.isEmpty()) {
+            // Assumes an 'insert()' method is defined in this class
+            this.insert(tempStack.pop()); 
+        }
+    }
+    // Assumed dummy methods for compilation
+    public void insert(int j) { /* ... */ }
+    public int remove() { return 0; /* ... */ } 
+}
+```
 
 -----
 
-## New Lab Assignment: 3.10 LAB Postfix Expression Evaluation
+\<hr\>
 
-### Overview
+### 4\. Singly Linked List: Delete All (Lab 4.18 - `removeAll(int n)`)
 
-In this lab, you will complete the `evaluatePostfix` method in the provided `ExpressionEvaluator` class. This method takes a **postfix expression** (Reverse Polish Notation) as a string and calculates its result using a **Stack**.
+| Topic | Complexity |
+| :--- | :--- |
+| **SLL Complex Deletion** | $O(N)$ |
 
-### Background: Postfix Notation
+**Overview:** Requires careful two-pointer (`current`, `previous`) management to delete **all** occurrences of a key, including consecutive duplicates and the `first` link.
 
-In postfix notation, the operator comes *after* the operands. This eliminates the need for parentheses and complex operator precedence rules.
+#### Code: `LinkList.java`
 
-  * **Example:** The infix expression `(2 + 3) * 4` is written as `2 3 + 4 *` in postfix.
+```java
+class Link {
+    public int dData;
+    public Link next;
 
-### Requirements
+    public Link(int dd) {
+        dData = dd;
+    }
+}
 
-You will add the following **one** method to the `ExpressionEvaluator` class, which must use a `Stack<Integer>`.
+public class LinkList {
+    private Link first;
 
-#### Part 1: Postfix Evaluation
+    public LinkList() {
+        first = null;
+    }
 
-The goal is to evaluate a postfix expression containing non-negative single-digit integers and the operators `+`, `-`, `*`, and `/`. The input string will have operands and operators separated by a single space (e.g., `"5 2 + 3 *"`).
+    // --- insertFirst/displayList/etc. omitted for brevity ---
 
-1.  **`public static int evaluatePostfix(String expression)`**:
-      * Initialize an **integer stack**.
-      * Iterate through the tokens (operands and operators) in the input string.
-      * **If the token is an operand (a number)**, push its integer value onto the stack.
-      * **If the token is an operator** (`+`, `-`, `*`, `/`):
-          * Pop the **second operand** (`operand2`).
-          * Pop the **first operand** (`operand1`).
-          * Perform the operation (`operand1 operator operand2`).
-          * Push the result back onto the stack.
-      * After iterating through all tokens, the **final result** will be the single remaining value on the stack.
+    /**
+     * Deletes all occurrences of a link with the given key.
+     * @param key The value to delete.
+     * @return true if at least one link was removed, false otherwise.
+     */
+    public boolean removeAll(int key) {
+        /* ADD YOUR CODE HERE */
+        Link current = first;
+        Link previous = null;
+        boolean removed = false;
 
-### Provided Code Structure (Java)
+        while (current != null) {
+            if (current.dData == key) {
+                removed = true;
+                
+                // Case 1: Node to be deleted is the 'first' link
+                if (previous == null) {
+                    first = current.next; // New 'first' is the next node
+                } 
+                // Case 2: Node is in the middle or end
+                else {
+                    previous.next = current.next; // Bypass 'current'
+                    // previous DOES NOT advance here to handle consecutive duplicates (e.g., 5->5)
+                }
 
-**File: `ExpressionEvaluator.java`**
+                // Advance current to the node that was previously current.next
+                if (previous == null) {
+                     current = first; 
+                } else {
+                     current = previous.next; 
+                }
+            } else {
+                // Key not found: Advance both pointers
+                previous = current;
+                current = current.next;
+            }
+        }
+        return removed;
+    }
+}
+```
+
+-----
+
+\<hr\>
+
+### 5\. Doubly Linked List: Priority Insert (Lab 4.19 - `priorityInsert()`)
+
+| Topic | Complexity |
+| :--- | :--- |
+| **DLL Sorted Insertion** | $O(N)$ |
+
+**Overview:** Uses a DLL to maintain sorted order. Requires finding the position and performing the complex **4-pointer update** for insertion.
+
+#### Code: `LinkList.java` (DLL version)
+
+```java
+class Link {
+    public long dData;
+    public Link next;
+    public Link previous;
+
+    public Link(long dd) {
+        dData = dd;
+    }
+}
+
+public class LinkList {
+    private Link first;
+    private Link last;
+
+    public LinkList() {
+        first = null;
+        last = null;
+    }
+
+    // --- deleteFirst/deleteLast/etc. omitted for brevity ---
+
+    /**
+     * Inserts a new link while maintaining sorted order (Priority Queue logic).
+     * @param key The key to insert.
+     */
+    public void priorityInsert(long key) {
+        /* ADD YOUR CODE HERE */
+        Link newLink = new Link(key);
+        Link current = first;
+
+        // 1. Find the link that the new link should come BEFORE
+        while (current != null && current.dData < key) {
+            current = current.next;
+        }
+
+        // 2. Perform the insertion
+        
+        // Case A: Insertion at the beginning (current is 'first' or list is empty)
+        if (current == first) {
+            if (first != null) {
+                first.previous = newLink;
+            }
+            newLink.next = first;
+            first = newLink;
+            if (last == null) {
+                last = newLink; // Handle empty list case (newLink is also 'last')
+            }
+        } 
+        // Case B: Insertion at the end (current is null)
+        else if (current == null) {
+            last.next = newLink;
+            newLink.previous = last;
+            last = newLink;
+        } 
+        // Case C: Insertion in the middle (current is the node AFTER newLink)
+        else {
+            // NewLink's links
+            newLink.next = current;
+            newLink.previous = current.previous;
+            
+            // Surrounding links (4-pointer update)
+            current.previous.next = newLink;
+            current.previous = newLink;
+        }
+    }
+}
+```
+
+-----
+
+\<hr\>
+
+### 6\. Recursion: Sum Digits (Lab 4.21 - `sumDigits(int num)`)
+
+| Topic | Complexity |
+| :--- | :--- |
+| **Recursion (Integer)** | $O(\log_{10}N)$ |
+
+**Overview:** Demonstrates the **recursive pattern for integer manipulation** using modulo (`%`) and division (`/`).
+
+#### Code: `RecursiveMath.java`
+
+```java
+public class RecursiveMath {
+
+    /**
+     * Recursively calculates the sum of the digits in a non-negative integer.
+     * @param num The integer to process.
+     * @return The sum of its digits.
+     */
+    public static int sumDigits(int num) {
+        /* ADD YOUR CODE HERE */
+        // Base Case: Only one digit left (0-9)
+        if (num < 10) {
+            return num;
+        }
+
+        // Recursive Step:
+        // 1. num % 10 isolates the rightmost digit (the digit to add to the sum)
+        // 2. num / 10 removes the rightmost digit for the next recursive call
+        return (num % 10) + sumDigits(num / 10);
+    }
+}
+```
+
+-----
+
+\<hr\>
+
+### 7\. Recursion: Linked List Reverse Print (Lab 4.22 - `recReversePrint()`)
+
+| Topic | Complexity |
+| :--- | :--- |
+| **Recursion (Post-Order)** | $O(N)$ |
+
+**Overview:** Uses the **post-order execution** of recursion (action after the recursive call returns) to reverse the order of output without changing pointers.
+
+#### Code: `RecursiveLinkList.java`
+
+```java
+class Link {
+    public int dData;
+    public Link next;
+
+    public Link(int dd) {
+        dData = dd;
+    }
+
+    public void displayLink() {
+        System.out.print(dData + " ");
+    }
+}
+
+public class RecursiveLinkList {
+    private Link first;
+
+    public RecursiveLinkList() {
+        first = null;
+    }
+
+    // --- insertFirst/etc. omitted for brevity ---
+
+    /**
+     * Public interface to start the recursive reverse print.
+     */
+    public void recReversePrint() {
+        System.out.print("Reverse Print: ");
+        recReversePrint(first);
+        System.out.println();
+    }
+
+    /**
+     * Recursive helper to print links in reverse order.
+     * @param current The current link being processed.
+     */
+    private void recReversePrint(Link current) {
+        /* ADD YOUR CODE HERE */
+        // Base Case: Reached the end of the list
+        if (current == null) {
+            return;
+        }
+
+        // 1. Recursive Call: Go to the NEXT link first. 
+        //    This pushes all subsequent calls onto the stack.
+        recReversePrint(current.next);
+
+        // 2. Execution Point: Only run AFTER the recursive calls return.
+        //    This executes in LIFO order, achieving the reverse print.
+        current.displayLink();
+    }
+}
+```
+
+-----
+
+\<hr\>
+
+### 8\. Stack Application: Postfix Evaluation (Lab 3.10)
+
+| Topic | Complexity |
+| :--- | :--- |
+| **Stack Application (String)** | $O(N)$ |
+
+**Overview:** An iterative application of the **Stack** to evaluate arithmetic expressions written in Postfix Notation (Reverse Polish Notation).
+
+#### Code: `ExpressionEvaluator.java`
 
 ```java
 import java.util.Stack;
@@ -125,169 +467,50 @@ import java.util.Stack;
 public class ExpressionEvaluator {
 
     /**
-     * Evaluates a postfix expression using a stack.
-     * Tokens are separated by a space (e.g., "5 2 + 3 *").
-     * Assumes valid input: single digits, standard operators, no division by zero.
-     * @param expression The postfix expression string.
-     * @return The integer result of the expression.
+     * Evaluates a space-separated postfix arithmetic expression using a stack.
+     * @param expression The postfix string (e.g., "5 2 + 3 *")
+     * @return The integer result of the evaluation.
      */
     public static int evaluatePostfix(String expression) {
         /* ADD YOUR CODE HERE */
-        // Hint: You can use String.split(" ") to get an array of tokens.
-        // Hint: Character.isDigit(char c) might be useful, or just check the token length.
-        // Hint: Integer.parseInt(String s) converts a string to an int.
-        
         Stack<Integer> stack = new Stack<>();
         String[] tokens = expression.split(" ");
-        
+
         for (String token : tokens) {
-            // Logic goes here
+            // Check if the token is a number
+            if (token.length() > 0 && Character.isDigit(token.charAt(0))) {
+                stack.push(Integer.parseInt(token));
+            } else {
+                // Operator Rule: Pop two operands (op2 is first, op1 is second)
+                if (stack.size() < 2) {
+                    throw new IllegalArgumentException("Invalid postfix expression: Too few operands.");
+                }
+                
+                int op2 = stack.pop(); 
+                int op1 = stack.pop(); 
+                int result;
+
+                // Perform the operation
+                switch (token) {
+                    case "+": result = op1 + op2; break;
+                    case "-": result = op1 - op2; break;
+                    case "*": result = op1 * op2; break;
+                    case "/": 
+                        if (op2 == 0) throw new ArithmeticException("Division by zero.");
+                        result = op1 / op2; 
+                        break;
+                    default: throw new IllegalArgumentException("Invalid operator: " + token);
+                }
+
+                stack.push(result);
+            }
         }
 
-        // The final result is the single remaining item on the stack
+        if (stack.size() != 1) {
+            throw new IllegalArgumentException("Invalid postfix expression: Too many operands remaining.");
+        }
+        
         return stack.pop();
     }
-
-    private static int applyOperation(String operator, int operand1, int operand2) {
-        switch (operator) {
-            case "+": return operand1 + operand2;
-            case "-": return operand1 - operand2;
-            case "*": return operand1 * operand2;
-            case "/": return operand1 / operand2;
-            default: throw new IllegalArgumentException("Unknown operator: " + operator);
-        }
-    }
 }
 ```
-
-**File: `Main.java` (Driver Program)**
-
-```java
-public class Main {
-    public static void main(String[] args) {
-        // (5 + 2) * 3 = 21
-        String exp1 = "5 2 + 3 *"; 
-        // 10 / 2 - 1 = 4
-        String exp2 = "10 2 / 1 -"; 
-        // (1 + 2) * (3 + 4) = 21
-        String exp3 = "1 2 + 3 4 + *";
-
-        System.out.println("Expression: " + exp1 + " = " + ExpressionEvaluator.evaluatePostfix(exp1));
-        System.out.println("Expression: " + exp2 + " = " + ExpressionEvaluator.evaluatePostfix(exp2));
-        System.out.println("Expression: " + exp3 + " = " + ExpressionEvaluator.evaluatePostfix(exp3));
-    }
-}
-```
-
------
-
-### Starting the Process
-
-This lab is iterative (uses a loop) but introduces the **Stack** as the key data structure.
-
-Based on our guide (Step 5: Formulate Logic), we are inside the **`for (String token : tokens)`** loop.
-
-The key decision inside the loop is: **Is the current `token` an operand (a number) or an operator (`+`, `-`, `*`, `/`)?**
-
-**What is the logic for handling the token if it is an OPERAND (a number)?** (What should you do with the number and the stack?)
-
-That's a fantastic idea\! Asking focused questions is the best way to solidify your understanding. I'll provide a new lab from a different section—we haven't focused on **Linked List structure modifications (non-recursive)** yet. This will test your understanding of pointers, constraints, and method placement.
-
-Here is your new challenge lab\!
-
------
-
-## New Lab Assignment: 4.17 LAB Linked List Insertion
-
-### Overview
-
-In this lab, you will modify the `LinkList` class to implement two new insertion methods. These methods require manipulating the `Link` pointers within the list to insert a new node at specific locations. You will **not** use recursion for these methods; you must use iterative logic (loops or traversal).
-
-The provided `LinkList` class uses a **singly linked list** structure where each `Link` node contains a `long` key and a pointer to the `next` Link. The list maintains a reference to the `first` link.
-
-### Requirements
-
-You will add the following **two** methods to the `LinkList` class.
-
-#### Part 1: Insert After a Specific Link
-
-The goal is to insert a new `Link` with a given key **immediately after** a link containing a specific key value.
-
-1.  **`public boolean insertAfter(long key, long newKey)`**:
-      * Traverse the list starting from the `first` link.
-      * Search for a link whose key matches the input `key`.
-      * If the `key` is found:
-          * Create a new `Link` with the `newKey`.
-          * Insert the new link immediately after the found link by adjusting the pointers.
-          * Return `true`.
-      * If the `key` is not found after checking the whole list, return `false`.
-
-#### Part 2: Insert Before a Specific Link
-
-The goal is to insert a new `Link` with a given key **immediately before** a link containing a specific key value.
-
-1.  **`public boolean insertBefore(long key, long newKey)`**:
-      * This operation is harder because you need the pointer to the **Link PRECEDING** the target link (`key`) to correctly adjust the chain.
-      * Traverse the list using **two pointers**: a `current` pointer and a `previous` pointer that always trails one step behind `current`.
-      * Search for a link whose key matches the input `key`.
-      * If the `key` is found:
-          * Create a new `Link` with the `newKey`.
-          * Insert the new link immediately before the found link by adjusting the pointers. Remember to handle the edge case where the target link is the `first` link.
-          * Return `true`.
-      * If the `key` is not found, return `false`.
-
-### Provided Code Structure (Simplified Java)
-
-**File: `Link.java`**
-
-```java
-public class Link {
-    public long dData; // data item (key)
-    public Link next;  // next link in list
-
-    public Link(long dd) {
-        dData = dd;
-    }
-
-    public void displayLink() {
-        System.out.print("{" + dData + "} ");
-    }
-}
-```
-
-**File: `LinkList.java`**
-
-```java
-public class LinkList {
-    private Link first; // ref to first link on list
-
-    public LinkList() {
-        first = null; // list is empty
-    }
-
-    public void insertFirst(long dd) {
-        Link newLink = new Link(dd);
-        newLink.next = first;
-        first = newLink;
-    }
-
-    // Displays the list (omitted for brevity)
-
-    // Part 1: Insert a new link AFTER a link with key
-    public boolean insertAfter(long key, long newKey) {
-        /* YOUR CODE GOES HERE */
-        // Use a single 'current' pointer.
-    }
-
-    // Part 2: Insert a new link BEFORE a link with key
-    public boolean insertBefore(long key, long newKey) {
-        /* YOUR CODE GOES HERE */
-        // Use 'current' and 'previous' pointers.
-    }
-}
-```
-
------
-
-**Your Turn\!** Start asking questions based on the guide you now have. Which part should we tackle first, and what questions do you have about the constraints or setup?
-

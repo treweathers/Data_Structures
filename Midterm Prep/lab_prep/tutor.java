@@ -181,5 +181,67 @@ public class LinkList {
     public boolean insertBefore(long key, long newKey) {
         /* YOUR CODE GOES HERE */
         // Use 'current' and 'previous' pointers.
+        //🚨
+        Link current = first;
+        Link prev = null;
+
+        Link current = current.next;
+        
+        while (current != null) {
+            if(current.dData == key) {
+                Link newLink = new Link(newKey);
+
+                //🚨
+                newLink.next = current.next;
+                prev.next = newLink;
+
+                return true;
+            } else {
+                //🚨
+                prev = current;
+                current = current.next;
+            }
+        }
     }
 }
+
+/*
+public boolean insertBefore(long key, long newKey) {
+    // 1. Setup two pointers
+    Link prev = null;
+    Link current = first;
+    
+    // 2. Loop until the end of the list
+    while (current != null) {
+        
+        // FOUND IT!
+        if (current.dData == key) {
+            
+            Link newLink = new Link(newKey);
+            
+            // The new link's next pointer always points to the found link (current)
+            newLink.next = current; 
+            
+            // EDGE CASE: If prev is null, we are inserting at the very beginning
+            if (prev == null) {
+                first = newLink; // Update the list's head
+            } 
+            // NORMAL CASE: Insert in the middle or at the end
+            else {
+                prev.next = newLink; // Redirect the previous link to the new link
+            }
+            
+            return true; // Insertion complete
+        } 
+        
+        // NOT FOUND: Advance both pointers (Crucial for prev tracking)
+        else {
+            prev = current;
+            current = current.next;
+        }
+    }
+    
+    // Looped through the whole list without finding the key
+    return false;
+}
+*/
