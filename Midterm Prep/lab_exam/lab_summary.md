@@ -47,18 +47,6 @@ Those are excellent points for clarification, especially when dealing with class
 
 ***
 
-Now that we have a solid, detailed guide, let's return to the current lab: **4.23 LAB Recursive Array Sorting Check**.
-
-We should start with the **Part 1 Public Interface Method**: `public static boolean isSorted(int[] nums)`.
-
-Its primary job is to **handle edge cases** (null or single-element arrays) and then **initiate the recursive process** by calling the private helper method, typically starting at index 0.
-
-## Focusing on the Current Lab: 4.23 LAB Recursive Array Sorting Check
-
-The current lab requires you to implement recursive methods for array checking, with the key constraint of **no loops** and using **recursion with array indices**.
-
-Based on the general steps above, what do you think you should do first for this specific lab, considering the structure provided? **Which one of the required methods should we start with, and what's its primary job?**
-
 ## 💡 The Layered Programming Assignment Setup Guide
 
 The key to tackling these labs is to define the **contract** between the **Driver/Main Class** (the application layer) and the **Data Structure Class** (the implementation layer) *before* you write the method logic.
