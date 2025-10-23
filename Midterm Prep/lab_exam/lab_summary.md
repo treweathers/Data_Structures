@@ -52,10 +52,6 @@ Those are excellent points for clarification, especially when dealing with class
 
 ***
 
-This revised guide clearly emphasizes the necessity of **private, overloaded recursive helper methods** whenever recursion is required but the initial method signature doesn't include the necessary state parameter (like `index` or a `Link` reference).
-
-***
-
 ## 💡 The Layered Programming Assignment Setup Guide
 
 The key to tackling these labs is to define the **contract** between the **Driver/Main Class** (the application layer) and the **Data Structure Class** (the implementation layer) *before* you write the method logic.
