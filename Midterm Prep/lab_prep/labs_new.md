@@ -1,9 +1,3 @@
-You're absolutely right\! Let's streamline this to include only the **8 distinct and solved** labs, removing the redundancy caused by the comprehensive **Lab 4.23 (Recursive Array Check)**.
-
-Here is the final, consolidated set of **eight** solved labs. Good luck with your exam\! 🍀
-
------
-
 ## 🚀 Final Consolidated Data Structures Lab Solutions (8 Labs)
 
 ### 1\. High Array: Remove Max (Lab 1.9 - `removeMax()`)
