@@ -36,7 +36,7 @@ Those are excellent points for clarification, especially when dealing with class
 
 ***
 
-5.  **Formulate Logic (Per Method)**: Design the logic for **each required method**, keeping the constraints in mind.
+5.  **PSEUDO-CODE Formulate Logic (Per Method)**: Design the logic for **each required method**, keeping the constraints in mind.
 
     ### 📝 File Placement Notes (Step 5)
     * **Where does the method belong?**
