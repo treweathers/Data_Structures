@@ -5,19 +5,20 @@ Those are excellent points for clarification, especially when dealing with class
 
 ***
 
-## How to Approach Any Programming Lab (Revised)
+## How to Approach Any Programming Lab (Final Revision)
 
 1.  **Understand the Goal**: What is the **overall purpose** of the code? (e.g., sort an array, implement a queue, calculate a sum recursively).
-2.  **Identify Required Methods/Classes**: What specific methods or classes do you need to write or modify, and what are their **full signatures** (name, return type, parameters, and visibility)?
 
-    ### 📝 Signature Notes (Step 2)
-    * **Return Type**: Look at what the method is supposed to *return*.
-        * Does it calculate a value? $\rightarrow$ Use `int`, `boolean`, `String`, etc. (e.g., `isSorted` returns `boolean`).
-        * Does it just modify an object? $\rightarrow$ Use `void` (e.g., `removeLast` on a linked list).
-    * **Parameters**: Look at what the method *needs* to do its job.
-        * If it's a **public interface** for a class method, it usually takes the necessary inputs (e.g., `int[] nums`, `int target`).
-        * If it's a **private recursive helper**, it usually takes the original inputs *plus* the state variables needed for recursion (e.g., `int index`, `Link current`).
-    * **Visibility**: Is the method called by *other* classes/user code? $\rightarrow$ Use `public`. Is it only called internally by a public method (e.g., a recursive helper)? $\rightarrow$ Use `private`.
+2.  **Identify Required Methods/Classes (Including Implicit Helpers)**: What specific methods or classes do you need to write or modify, and what are their **full signatures** (name, return type, parameters, and visibility)?
+
+    ### 📝 Signature and Helper Notes (Step 2)
+    * **Required Methods**: List the public methods specified in the assignment (e.g., `isSorted(int[] nums)`, `removeLast(int n)`).
+    * **Implicit Helpers**: Ask yourself:
+        * **Is recursion required?** $\rightarrow$ You **must** create a **private, overloaded helper method** (e.g., `isSorted(int[] nums, int index)` or `recRemoveLast(Link current, int n)`).
+        * **Does the logic involve a complex, repeated sub-task?** $\rightarrow$ Consider a **private helper** to keep the main method clean (e.g., a method to shift array elements after a deletion, or a method to apply an operation in a complex loop like in the Postfix Evaluator).
+        * **Return Type**: Does it calculate a value? $\rightarrow$ Use `int`, `boolean`, `String`, etc. (e.g., `isSorted` returns `boolean`). Does it just modify an object? $\rightarrow$ Use `void` (e.g., `removeLast` on a linked list).
+    * **Parameters**: If it's a **private recursive helper**, it usually takes the original inputs *plus* the **state variable** needed for recursion (e.g., `int index`, `Link current`).
+    * **Visibility**: Only methods called by external code should be `public`. Internal-only methods should be `private`.
 
 ***
 
@@ -38,12 +39,20 @@ Those are excellent points for clarification, especially when dealing with class
 
 5.  **PSEUDO-CODE Formulate Logic (Per Method)**: Design the logic for **each required method**, keeping the constraints in mind.
 
-    ### 📝 File Placement Notes (Step 5)
-    * **Where does the method belong?**
-        * **Utility/Logic Methods (e.g., `isSorted`, `decimalToBinary`):** If the method performs a universal operation *on* data, it goes in a **Utility/Helper Class** (like `ArrayUtils.java` or sometimes `Main.java` if it's a simple, standalone function). These methods are often declared `static`.
-        * **Data Structure Methods (e.g., `removeLast`, `priorityInsert`):** If the method modifies the *state* or *structure* of an object, it belongs inside the **Class that defines the data structure** (e.g., `LinkList.java`, `OrdArray.java`, `DoublyLinkedList.java`). These are usually **instance methods** (not static) unless operating purely on static fields.
+    ### 📝 Logic Formulation (Step 5)
+    * **Public Interface Method (The Caller)**: This method's primary jobs are:
+        1.  **Error/Edge Checking**: Handle `null` or empty inputs.
+        2.  **State Initialization**: Set up initial state variables (e.g., `index = 0`, `current = first`).
+        3.  **Initiate Work**: Call the iterative logic (using a loop) OR call the private recursive helper method.
+    * **Helper Method (The Workhorse)**:
+        * **Iterative Helpers**: Perform a specific, isolated sub-task (e.g., `private void shiftElements(int start)`).
+        * **Recursive Helpers**: Must contain exactly two parts:
+            1.  **Base Case(s)**: The condition that **stops the recursion** and returns the final result or state (e.g., `index >= length`).
+            2.  **Recursive Step**: The logic that performs one step of the work and then **calls itself** with a modified parameter, moving toward the base case (e.g., `return 1 + helper(..., index + 1)`).
 
-    * **Public Interface vs. Helper Method**: See the original notes in step 5—the public method goes in the appropriate class/file and calls the private helper method.
+***
+
+This revised guide clearly emphasizes the necessity of **private, overloaded recursive helper methods** whenever recursion is required but the initial method signature doesn't include the necessary state parameter (like `index` or a `Link` reference).
 
 ***
 
